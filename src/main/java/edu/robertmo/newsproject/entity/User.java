@@ -1,6 +1,7 @@
 package edu.robertmo.newsproject.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.List;
@@ -14,12 +15,14 @@ import java.util.Set;
 @Builder
 public class User {
     @Id
+    @GeneratedValue
     private Long id;
 
+    @NotNull
     private String username;
-
+    @NotNull
     private String email;
-
+    @NotNull
     private String password;
 
     @OneToMany(

@@ -5,6 +5,7 @@ import edu.robertmo.newsproject.dto.ArticleResponseDto;
 import edu.robertmo.newsproject.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -17,6 +18,7 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> createArticle(
             @RequestBody ArticleRequestDto dto, UriComponentsBuilder uriBuilder) {
 

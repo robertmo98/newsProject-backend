@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,28 +29,27 @@ public class Article {
     @NotNull
     private String content;
 
-    @NotNull
-    private Date date;
+    private LocalDate date;
 
     @NotNull
     private String secondaryTitle;
 
-    @NotNull
+
     private String mainImg;
-    @NotNull
+
     private String mainImgDescription;
-    @NotNull
+
     private String mainImgCredit;
-    @NotNull
+
     private String secondImg;
-    @NotNull
+
     private String secondImgDescription;
-    @NotNull
+
     private String secondImgCredit;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", nullable = false)
+//    private User user;
 
     @OneToMany(
             mappedBy = "article",

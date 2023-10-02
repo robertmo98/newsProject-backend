@@ -1,18 +1,19 @@
 package edu.robertmo.newsproject.dto;
 
+import edu.robertmo.newsproject.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class ArticleResponseDto {
+public class ArticleWithCommentsDto {
     private Long id;
     private String category;
     private String title;
@@ -26,4 +27,5 @@ public class ArticleResponseDto {
     private String secondImgDescription;
     private String secondImgCredit;
 
+    private List<Comment> comments;
 }

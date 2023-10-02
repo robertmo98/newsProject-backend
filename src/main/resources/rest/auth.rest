@@ -1,0 +1,22 @@
+###Create a new user:
+POST http://localhost:8080/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "username": "bob1",
+  "email": "bob@mail.com",
+  "password": "Password!1"
+}
+
+###Sign a user in:
+POST http://localhost:8080/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "username": "bob1",
+  "password": "Password!1"
+}
+
+###Get all articles (using jwt instead of Basic)
+GET http://localhost:8080/api/v1/articles
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJib2IxIiwiaWF0IjoxNjk2MTc5NTYwLCJleHAiOjE2OTg3NzE1NjB9.FnJnTKQ0ohCL970QeMyrtXixKI7Q26zRIQ1W3a1KkrBveoecdwbBevaucDWcCcU9ylHUDYGeqHbX0l2RjVm9-g

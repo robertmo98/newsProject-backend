@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,7 +21,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponseDto createArticle(ArticleRequestDto dto) {
         Article entity = modelMapper.map(dto, Article.class);
-
+        entity.setDate(LocalDate.now());
         var saved = articleRepository.save(entity);
 
         return modelMapper.map(saved, ArticleResponseDto.class);
@@ -40,7 +43,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleResponseDto updateArticleById(ArticleRequestDto dto, long id) {
-        // TODO: 30/09/2023 set this later
+        // TODO: 30/09/2023 set this later. remember to handle the time property issue
         return null;
     }
 
