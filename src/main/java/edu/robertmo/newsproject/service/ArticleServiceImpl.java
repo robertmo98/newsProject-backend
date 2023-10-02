@@ -1,11 +1,17 @@
 package edu.robertmo.newsproject.service;
 
+import edu.robertmo.newsproject.dto.ArticlePageResponseDto;
 import edu.robertmo.newsproject.dto.ArticleRequestDto;
 import edu.robertmo.newsproject.dto.ArticleResponseDto;
+import edu.robertmo.newsproject.dto.ArticleWithCommentsDto;
 import edu.robertmo.newsproject.entity.Article;
 import edu.robertmo.newsproject.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -54,6 +60,22 @@ public class ArticleServiceImpl implements ArticleService {
         return modelMapper.map(article, ArticleResponseDto.class);
     }
 
+    @Override
+    public ArticlePageResponseDto getAllArticles(int pageNo, int pageSize, String sortDir, String sortBy) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.fromString(sortDir), sortBy);
+
+        Page<Article> page = articleRepository.findAll(pageable);
+
+        return ArticlePageResponseDto.builder()
+                .results(page.stream().map(article -> modelMapper.map(article, ArticleWithCommentsDto.class)).toList())
+                .pageSize(page.getSize())
+                .totalPages(page.getTotalPages())
+                .pageNo(page.getNumber())
+                .totalArticles(page.getTotalElements())
+                .isLast(page.isLast())
+                .isFirst(page.isFirst())
+                .build();
+    }
 
 
 

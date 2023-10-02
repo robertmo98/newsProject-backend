@@ -1,5 +1,6 @@
 package edu.robertmo.newsproject.service;
 
+import edu.robertmo.newsproject.dto.ArticlePageResponseDto;
 import edu.robertmo.newsproject.dto.ArticleRequestDto;
 import edu.robertmo.newsproject.dto.ArticleResponseDto;
 
@@ -12,6 +13,5 @@ public interface ArticleService {
     ArticleResponseDto updateArticleById(ArticleRequestDto dto, long id);
     ArticleResponseDto deleteArticleById(long id);
 
-    // TODO: 30/09/2023 add methods to return articles using pagination
-
+    ArticlePageResponseDto getAllArticles(int pageNo, int pageSize, String sortDir, String sortBy);
 }

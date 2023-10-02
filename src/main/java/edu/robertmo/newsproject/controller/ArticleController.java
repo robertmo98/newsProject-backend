@@ -1,5 +1,6 @@
 package edu.robertmo.newsproject.controller;
 
+import edu.robertmo.newsproject.dto.ArticlePageResponseDto;
 import edu.robertmo.newsproject.dto.ArticleRequestDto;
 import edu.robertmo.newsproject.dto.ArticleResponseDto;
 import edu.robertmo.newsproject.service.ArticleService;
@@ -32,6 +33,16 @@ public class ArticleController {
     @GetMapping
     public ResponseEntity<List<ArticleResponseDto>> getAllArticles() {
         return ResponseEntity.ok(articleService.getAllArticles());
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<ArticlePageResponseDto> getArticlesPage(
+            @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
+            @RequestParam(value = "sortDir", required = false, defaultValue = "asc") String sortDir,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy
+    ) {
+        return ResponseEntity.ok(articleService.getAllArticles(pageNo, pageSize, sortDir, sortBy));
     }
 
 
