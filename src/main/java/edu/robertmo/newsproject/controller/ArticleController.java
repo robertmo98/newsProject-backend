@@ -29,10 +29,29 @@ public class ArticleController {
         return ResponseEntity.created(uri).body(saved);
     }
 
-
     @GetMapping
     public ResponseEntity<List<ArticleResponseDto>> getAllArticles() {
         return ResponseEntity.ok(articleService.getAllArticles());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ArticleResponseDto> getArticleById(@PathVariable long id) {
+        return ResponseEntity.ok(articleService.getArticleById(id));
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ArticleResponseDto> updateArticleById(
+            @PathVariable long id,
+            @RequestBody ArticleRequestDto dto) {
+        return ResponseEntity.ok(articleService.updateArticleById(dto, id));
+    }
+
+    @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ArticleResponseDto> deleteArticleById(
+            @PathVariable long id) {
+        return ResponseEntity.ok(articleService.deleteArticleById(id));
     }
 
     @GetMapping("/page")
@@ -44,17 +63,4 @@ public class ArticleController {
     ) {
         return ResponseEntity.ok(articleService.getAllArticles(pageNo, pageSize, sortDir, sortBy));
     }
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<ArticleResponseDto> getArticleById(@PathVariable long id) {
-        return ResponseEntity.ok(articleService.getArticleById(id));
-    }
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<ArticleResponseDto> deleteArticleById(
-            @PathVariable long id) {
-        return ResponseEntity.ok(articleService.deleteArticleById(id));
-    }
-
 }

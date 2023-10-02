@@ -17,6 +17,25 @@ Content-Type: application/json
 GET http://localhost:8080/api/v1/articles
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 
+### Get an article by id:
+GET http://localhost:8080/api/v1/articles/202
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+
+###Update an article by id:
+PUT http://localhost:8080/api/v1/articles/202
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+Content-Type: application/json
+
+{
+  "category": "Chemistry",
+  "title": "Changed!!!! The first Chemistry Article",
+  "content": "It is very interesting to read the first ever article",
+  "secondaryTitle": "Chemistry beyond the database",
+  "mainImg": "something",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit"
+}
+
 ###Get articles by page 1:
 GET http://localhost:8080/api/v1/articles/page?pageSize=2&pageNo=0
 Authorization: Basic dXNlcjpwYXNzd29yZA==
@@ -32,10 +51,9 @@ GET http://localhost:8080/api/v1/articles/page?pageSize=4&pageNo=0&sortDir=desc&
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 
 
-### Get a post by id:
-GET http://localhost:8080/api/v1/articles/1
 
-### Delete a post by id:
+
+### Delete an article by id:
 DELETE http://localhost:8080/api/v1/articles/1
 
 

@@ -49,8 +49,26 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleResponseDto updateArticleById(ArticleRequestDto dto, long id) {
-        // TODO: 30/09/2023 set this later. remember to handle the time property issue
-        return null;
+        Article articleFromDb = getArticleEntity(id);
+
+        //update => copy new props from request dto
+        articleFromDb.setCategory(dto.getCategory());
+        articleFromDb.setTitle(dto.getTitle());
+        articleFromDb.setContent(dto.getContent());
+        //save the original date.
+        articleFromDb.setSecondaryTitle(dto.getSecondaryTitle());
+        articleFromDb.setMainImg(dto.getMainImg());
+        articleFromDb.setMainImgDescription(dto.getMainImgDescription());
+        articleFromDb.setMainImgCredit(dto.getMainImgCredit());
+        articleFromDb.setSecondImg(dto.getSecondImg());
+        articleFromDb.setSecondImgDescription(dto.getSecondImgDescription());
+        articleFromDb.setSecondImgCredit(dto.getSecondImgCredit());
+
+        //save:
+        var saved = articleRepository.save(articleFromDb);
+
+        //return response entity:
+        return modelMapper.map(saved, ArticleResponseDto.class);
     }
 
     @Override
