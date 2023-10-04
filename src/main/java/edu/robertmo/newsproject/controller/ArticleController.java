@@ -1,9 +1,11 @@
 package edu.robertmo.newsproject.controller;
 
-import edu.robertmo.newsproject.dto.ArticlePageResponseDto;
-import edu.robertmo.newsproject.dto.ArticleRequestDto;
-import edu.robertmo.newsproject.dto.ArticleResponseDto;
+import edu.robertmo.newsproject.dto.response.ArticlePageResponseDto;
+import edu.robertmo.newsproject.dto.request.ArticleRequestDto;
+import edu.robertmo.newsproject.dto.response.ArticleResponseDto;
 import edu.robertmo.newsproject.service.ArticleService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,7 +23,7 @@ public class ArticleController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> createArticle(
-            @RequestBody ArticleRequestDto dto, UriComponentsBuilder uriBuilder) {
+            @RequestBody @Valid ArticleRequestDto dto, UriComponentsBuilder uriBuilder) {
 
         var saved = articleService.createArticle(dto);
         var uri = uriBuilder.path("/api/v1/articles/{id}").buildAndExpand(saved.getId()).toUri();
@@ -35,22 +37,22 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArticleResponseDto> getArticleById(@PathVariable long id) {
+    public ResponseEntity<ArticleResponseDto> getArticleById(@NotNull @PathVariable @Valid long id) {
         return ResponseEntity.ok(articleService.getArticleById(id));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> updateArticleById(
-            @PathVariable long id,
-            @RequestBody ArticleRequestDto dto) {
+            @NotNull @Valid @PathVariable long id,
+            @Valid @RequestBody ArticleRequestDto dto) {
         return ResponseEntity.ok(articleService.updateArticleById(dto, id));
     }
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> deleteArticleById(
-            @PathVariable long id) {
+            @NotNull @Valid @PathVariable long id) {
         return ResponseEntity.ok(articleService.deleteArticleById(id));
     }
 

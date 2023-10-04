@@ -1,4 +1,4 @@
-package edu.robertmo.newsproject.dto;
+package edu.robertmo.newsproject.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentResponseDto {
+public class UserResponseDto {
     private long id;
-    private UserResponseDto user;
-    private String comment;
+    private String username;
+    private String email;
 }

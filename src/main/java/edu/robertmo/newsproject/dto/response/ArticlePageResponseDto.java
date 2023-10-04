@@ -1,4 +1,4 @@
-package edu.robertmo.newsproject.dto;
+package edu.robertmo.newsproject.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,14 +1,12 @@
-package edu.robertmo.newsproject.dto;
+package edu.robertmo.newsproject.dto.request;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentRequestDto {
-    private String comment;
+    private String content;
 }

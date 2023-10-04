@@ -15,7 +15,7 @@ Content-Type: application/json
 
 ### Get all the articles:
 GET http://localhost:8080/api/v1/articles
-Authorization: Basic dXNlcjpwYXNzd29yZA==
+Authorization: Basic admin admin eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJib2IxIiwiaWF0IjoxNjk2MTc5NTYwLCJleHAiOjE2OTg3NzE1NjB9.FnJnTKQ0ohCL970QeMyrtXixKI7Q26zRIQ1W3a1KkrBveoecdwbBevaucDWcCcU9ylHUDYGeqHbX0l2RjVm9-g dXNlcjpwYXNzd29yZA==
 
 ### Get an article by id:
 GET http://localhost:8080/api/v1/articles/202

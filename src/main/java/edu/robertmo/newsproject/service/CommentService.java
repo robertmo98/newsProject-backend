@@ -1,7 +1,7 @@
 package edu.robertmo.newsproject.service;
 
-import edu.robertmo.newsproject.dto.CommentRequestDto;
-import edu.robertmo.newsproject.dto.CommentResponseDto;
+import edu.robertmo.newsproject.dto.request.CommentRequestDto;
+import edu.robertmo.newsproject.dto.response.CommentResponseDto;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;

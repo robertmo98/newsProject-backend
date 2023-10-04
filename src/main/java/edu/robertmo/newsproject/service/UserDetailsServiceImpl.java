@@ -1,7 +1,7 @@
 package edu.robertmo.newsproject.service;
 
-import edu.robertmo.newsproject.dto.SignUpRequestDto;
-import edu.robertmo.newsproject.dto.UserResponseDto;
+import edu.robertmo.newsproject.dto.request.SignUpRequestDto;
+import edu.robertmo.newsproject.dto.response.UserResponseDto;
 import edu.robertmo.newsproject.repository.RoleRepository;
 import edu.robertmo.newsproject.repository.UserRepository;
 import jakarta.transaction.Transactional;

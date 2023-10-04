@@ -3,6 +3,7 @@ package edu.robertmo.newsproject.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,9 +19,10 @@ public class Comment {
 
     private String content;
 
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne

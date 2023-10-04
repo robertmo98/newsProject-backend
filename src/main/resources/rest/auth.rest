@@ -3,8 +3,8 @@ POST http://localhost:8080/api/v1/auth/signup
 Content-Type: application/json
 
 {
-  "username": "bob1",
-  "email": "bob@mail.com",
+  "username": "Josh",
+  "email": "josh@mail.com",
   "password": "Password!1"
 }
 
@@ -13,9 +13,30 @@ POST http://localhost:8080/api/v1/auth/signin
 Content-Type: application/json
 
 {
-  "username": "bob1",
+  "username": "Josh",
   "password": "Password!1"
 }
+
+###Sign a user in (Bearer):
+POST http://localhost:8080/api/v1/auth/signin
+Content-Type: application/json
+
+
+{
+  "username": "Josh",
+  "password": "Password!1"
+}
+
+###Sign an invalid user in:
+
+POST http://localhost:8080/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "username": "bob200",
+  "password": "Password!1"
+}
+
 
 ###Get all articles (using jwt instead of Basic)
 GET http://localhost:8080/api/v1/articles

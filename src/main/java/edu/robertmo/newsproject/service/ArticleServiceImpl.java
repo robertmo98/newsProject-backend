@@ -1,9 +1,9 @@
 package edu.robertmo.newsproject.service;
 
-import edu.robertmo.newsproject.dto.ArticlePageResponseDto;
-import edu.robertmo.newsproject.dto.ArticleRequestDto;
-import edu.robertmo.newsproject.dto.ArticleResponseDto;
-import edu.robertmo.newsproject.dto.ArticleWithCommentsDto;
+import edu.robertmo.newsproject.dto.response.ArticlePageResponseDto;
+import edu.robertmo.newsproject.dto.request.ArticleRequestDto;
+import edu.robertmo.newsproject.dto.response.ArticleResponseDto;
+import edu.robertmo.newsproject.dto.response.ArticleWithCommentsDto;
 import edu.robertmo.newsproject.entity.Article;
 import edu.robertmo.newsproject.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +15,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service

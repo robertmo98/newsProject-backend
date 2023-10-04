@@ -1,8 +1,8 @@
 package edu.robertmo.newsproject.service;
 
-import edu.robertmo.newsproject.dto.ArticlePageResponseDto;
-import edu.robertmo.newsproject.dto.ArticleRequestDto;
-import edu.robertmo.newsproject.dto.ArticleResponseDto;
+import edu.robertmo.newsproject.dto.response.ArticlePageResponseDto;
+import edu.robertmo.newsproject.dto.request.ArticleRequestDto;
+import edu.robertmo.newsproject.dto.response.ArticleResponseDto;
 
 import java.util.List;
 
