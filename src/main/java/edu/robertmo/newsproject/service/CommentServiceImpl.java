@@ -24,6 +24,7 @@ public class CommentServiceImpl implements CommentService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final RoleRepository roleRepository;
+    private final UserDetailsServiceImpl authService;
 
     @Override
     public CommentResponseDto createComment(long articleId, CommentRequestDto dto, Authentication authentication) {
@@ -79,6 +80,7 @@ public class CommentServiceImpl implements CommentService {
 
         userHasPermissionToEditComment(authentication, saved);
 
+
         commentRepository.deleteById(commentId);
 
         return modelMapper.map(saved, CommentResponseDto.class);
@@ -89,19 +91,12 @@ public class CommentServiceImpl implements CommentService {
 
         var adminRole = roleRepository.findByNameIgnoreCase("ROLE_ADMIN").orElseThrow();
 
-        var isAdmin = user.getRoles().contains(adminRole);
+        var isAdmin = authService.isAdmin(authentication.getName());
         var userOwnsComment = user.getUsername().equalsIgnoreCase(authentication.getName());
 
         if(!isAdmin && !userOwnsComment) {
             throw new BadRequestException("user", "Comment must belong the editing user");
         }
-
-
-
-
-
-
-
 
     }
 }

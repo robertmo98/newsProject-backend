@@ -3,8 +3,8 @@ POST http://localhost:8080/api/v1/auth/signup
 Content-Type: application/json
 
 {
-  "username": "Josh",
-  "email": "josh@mail.com",
+  "username": "Methew",
+  "email": "mathew@mail.com",
   "password": "Password!1"
 }
 
@@ -17,10 +17,18 @@ Content-Type: application/json
   "password": "Password!1"
 }
 
+###Change profile pic:
+PUT http://localhost:8080/api/v1/auth/profile/update/picture
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb3NoIiwiaWF0IjoxNjk5NjM5NjM5LCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvNDEzMTUvYWZyaWNhLWFmcmljYW4tYW5pbWFsLWNhdC00MTMxNS5qcGVnP2F1dG89Y29tcHJlc3MmY3M9dGlueXNyZ2Imdz0xMjYwJmg9NzUwJmRwcj0yOi8vaW1hZ2VzLnBleGVscy5jb20vcGhvdG9zLzM2NTgxMjAvcGV4ZWxzLXBob3RvLTM2NTgxMjAuanBlZz9hdXRvPWNvbXByZXNzJmNzPXRpbnlzcmdiJnc9MTI2MCZoPTc1MCZkcHI9MiIsImV4cCI6MTcwMjIzMTYzOX0.1aesZhluvGnTBKX3E_bJzjzMuwE9jf8sXuiyPRm7-6suIrJBg_EYGLf186Sa9-1e22Ai22SsRhrUhMo_0eaL5g
+
+{
+  "profilePic": "https://images.pexels.com/photos/41314/africa-african-animal-big-41314.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+}
+
 ###Sign a user in (Bearer):
 POST http://localhost:8080/api/v1/auth/signin
 Content-Type: application/json
-
 
 {
   "username": "Josh",

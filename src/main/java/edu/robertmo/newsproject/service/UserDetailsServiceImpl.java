@@ -1,13 +1,16 @@
 package edu.robertmo.newsproject.service;
 
 import edu.robertmo.newsproject.dto.request.SignUpRequestDto;
+import edu.robertmo.newsproject.dto.request.UserProfilePicRequestDto;
 import edu.robertmo.newsproject.dto.response.UserResponseDto;
+import edu.robertmo.newsproject.entity.Role;
 import edu.robertmo.newsproject.repository.RoleRepository;
 import edu.robertmo.newsproject.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import edu.robertmo.newsproject.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,12 +19,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.newsproject.service.UserDetailsService {
     //props:
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -49,10 +54,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             null,
                 dto.getUsername(),
                 dto.getEmail(),
+                null,
                 passwordEncoder.encode(dto.getPassword()),
                 List.of(),
                 Set.of(userRole)
-        );
+                );
 
         var savedUser = userRepository.save(user);
         return modelMapper.map(savedUser, UserResponseDto.class);
@@ -61,9 +67,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //fetch our user entity from our database
-        var user = userRepository
-                .findByUsernameIgnoreCase(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+        User user = getUser(username);
 
         //map our roles to Springs SimpleGrantedAuthority:
         var roles = user.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.getName())).toList();
@@ -72,4 +76,50 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //spring User implements UserDetails
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), roles);
     }
+
+
+    public boolean isAdmin(String username) {
+        Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
+
+        Optional <Role> roleAdmin = roleRepository.findByNameIgnoreCase("ROLE_ADMIN");
+
+        if (user != null) {
+            Set<Role> roles = user.get().getRoles();
+
+            for(Role role : roles) {
+                if("ROLE_ADMIN".equals(role.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public String getProfilePic(String username) {
+        User user = getUser(username);
+        return user.getProfilePic();
+    }
+
+
+    @Override
+    @Transactional
+    public UserResponseDto updateProfilePic(UserProfilePicRequestDto dto, Authentication authentication) {
+        var username = authentication.getName();
+        User user = getUser(username);
+
+        user.setProfilePic(dto.getProfilePic());
+
+        var userAfterUpdate = getUser(username);
+
+        return modelMapper.map(userAfterUpdate, UserResponseDto.class);
+    }
+
+    private User getUser(String username) {
+        var user = userRepository
+                .findByUsernameIgnoreCase(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
+        return user;
+    }
+
+
 }

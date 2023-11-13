@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,7 +24,7 @@ public class ArticleController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> createArticle(
-            @RequestBody @Valid ArticleRequestDto dto, UriComponentsBuilder uriBuilder) {
+            @RequestBody @Valid ArticleRequestDto dto, UriComponentsBuilder uriBuilder, Authentication authentication) {
 
         var saved = articleService.createArticle(dto);
         var uri = uriBuilder.path("/api/v1/articles/{id}").buildAndExpand(saved.getId()).toUri();
@@ -36,6 +37,7 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getAllArticles());
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<ArticleResponseDto> getArticleById(@NotNull @PathVariable @Valid long id) {
         return ResponseEntity.ok(articleService.getArticleById(id));
@@ -45,7 +47,8 @@ public class ArticleController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> updateArticleById(
             @NotNull @Valid @PathVariable long id,
-            @Valid @RequestBody ArticleRequestDto dto) {
+            @Valid @RequestBody ArticleRequestDto dto,
+            Authentication authentication) {
         return ResponseEntity.ok(articleService.updateArticleById(dto, id));
     }
 
@@ -65,4 +68,6 @@ public class ArticleController {
     ) {
         return ResponseEntity.ok(articleService.getAllArticles(pageNo, pageSize, sortDir, sortBy));
     }
+
+
 }

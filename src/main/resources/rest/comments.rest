@@ -1,10 +1,10 @@
 ###Create a comment:
-POST http://localhost:8080/api/v1/articles/202/comments
+POST http://localhost:8080/api/v1/articles/454/comments
 Content-Type: application/json
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 
 {
-  "content": "second authorized comment"
+  "content": "another comment"
 }
 
 ###Get comments by article id:

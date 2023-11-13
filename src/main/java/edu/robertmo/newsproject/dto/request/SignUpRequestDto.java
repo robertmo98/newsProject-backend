@@ -25,6 +25,8 @@ public class SignUpRequestDto {
     @Email
     private String email;
 
+    private String profilePic;
+
     @NotNull(message = "password is mandatory")
     @NotEmpty
     @Size(min = 8, max = 20)

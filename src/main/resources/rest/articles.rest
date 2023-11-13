@@ -1,6 +1,6 @@
 ### Create an article:
 POST http://localhost:8080/api/v1/articles
-Authorization: Basic admin admin
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb3NoIiwiaWF0IjoxNjk5ODY2NDI1LCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvMzI1MDQ1NC9wZXhlbHMtcGhvdG8tMzI1MDQ1NC5qcGVnP2F1dG89Y29tcHJlc3MmY3M9dGlueXNyZ2Imdz0xMjYwJmg9NzUwJmRwcj0yIiwiZXhwIjoxNzAyNDU4NDI1fQ.w7AQv_2BWtk0b66PKlB-Oh6NX25UkzzpVTYMzIe93vYoJ1cqynVVhi136wADTNSmfq_f_SWdnd6HGuoDU6z88w
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 ### Get all the articles:
 GET http://localhost:8080/api/v1/articles
-Authorization: Basic admin admin eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJib2IxIiwiaWF0IjoxNjk2MTc5NTYwLCJleHAiOjE2OTg3NzE1NjB9.FnJnTKQ0ohCL970QeMyrtXixKI7Q26zRIQ1W3a1KkrBveoecdwbBevaucDWcCcU9ylHUDYGeqHbX0l2RjVm9-g dXNlcjpwYXNzd29yZA==
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb3NoIiwiaWF0IjoxNjk5ODY2NDI1LCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvMzI1MDQ1NC9wZXhlbHMtcGhvdG8tMzI1MDQ1NC5qcGVnP2F1dG89Y29tcHJlc3MmY3M9dGlueXNyZ2Imdz0xMjYwJmg9NzUwJmRwcj0yIiwiZXhwIjoxNzAyNDU4NDI1fQ.w7AQv_2BWtk0b66PKlB-Oh6NX25UkzzpVTYMzIe93vYoJ1cqynVVhi136wADTNSmfq_f_SWdnd6HGuoDU6z88w
 
 ### Get an article by id:
 GET http://localhost:8080/api/v1/articles/202
@@ -134,3 +134,169 @@ Content-Type: application/json
   "mainImgDescription": "some image",
   "mainImgCredit": "no credit"
 }
+
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "The sixth Chemistry Article something",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/920157/pexels-photo-920157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "The sixth Chemistry Article againg",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/1076758/pexels-photo-1076758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "Minor Changes",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/2280547/pexels-photo-2280547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "More Changes",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/950327/pexels-photo-950327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "Changes",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "Biology Again",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/753267/pexels-photo-753267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "Biology Again again",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://www.science.org/do/10.1126/science.adl5286/full/_20231023_on_dna_sub-1698090256717.jpg",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "More Again again",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/2698871/pexels-photo-2698871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "So many titles",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/1312067/pexels-photo-1312067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+### Create an article:
+POST http://localhost:8080/api/v1/articles
+Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+  "category": "Biology",
+  "title": "So many titles again!",
+  "content": "Worried that bioterrorists will take advantage of the growing ease of creating risky pathogens in the lab, federal officials are beefing up guidelines for companies that sell nucleic acids such as DNA and RNA. The recommendations, released earlier this month, update the U.S. Department of Health and Human Services’s (HHS’s) 13-year-old guidance for screening orders to cover more forms of DNA and RNA, as well as new desktop devices for printing these molecular blueprints. Yet the guidelines will remain voluntary under HHS’s plan, disappointing some biosecurity experts. Biologists seeking to synthesize genes commonly order nucleic acids as part of their research on infectious diseases, cell biology, cancer, and myriad other projects. In some cases, the requested DNA or RNA encodes components of risky viruses or bacteria. There’s long been concern that such orders aren’t scrutinized well enough. The U.S. has strict regulations overseeing labs that work on 68 dangerous human, animal, and plant microbes and toxins known as “select agents.” And separate export regulations identify the select agents that require licenses before they can be shipped abroad.",
+  "secondaryTitle": "The sixth chemistry article",
+  "mainImg": "https://images.pexels.com/photos/1086583/pexels-photo-1086583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "mainImgDescription": "some image",
+  "mainImgCredit": "no credit",
+  "secondaryTitle":"something"
+}
+
+
+###docs
+GET http://localhost:8080/docs

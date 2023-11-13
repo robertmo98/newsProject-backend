@@ -6,12 +6,14 @@ import edu.robertmo.newsproject.dto.response.ArticleResponseDto;
 import edu.robertmo.newsproject.dto.response.ArticleWithCommentsDto;
 import edu.robertmo.newsproject.entity.Article;
 import edu.robertmo.newsproject.repository.ArticleRepository;
+import edu.robertmo.newsproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,10 +24,12 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
     @Override
     public ArticleResponseDto createArticle(ArticleRequestDto dto) {
         Article entity = modelMapper.map(dto, Article.class);
         entity.setDate(LocalDate.now());
+
         var saved = articleRepository.save(entity);
 
         return modelMapper.map(saved, ArticleResponseDto.class);
@@ -61,7 +65,6 @@ public class ArticleServiceImpl implements ArticleService {
         articleFromDb.setSecondImg(dto.getSecondImg());
         articleFromDb.setSecondImgDescription(dto.getSecondImgDescription());
         articleFromDb.setSecondImgCredit(dto.getSecondImgCredit());
-
         //save:
         var saved = articleRepository.save(articleFromDb);
 

@@ -30,7 +30,7 @@ public class JWTProvider {
         mSecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String username, boolean isAdmin, String profilePic) {
         var currentDate = new Date();
         //future date:
         var expiresDate = new Date(currentDate.getTime() + expires);
@@ -38,6 +38,8 @@ public class JWTProvider {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(currentDate)
+                .claim("role", isAdmin ? "admin": "user")
+                .claim("profilePic", profilePic)
                 .setExpiration(expiresDate)
                 .signWith(mSecretKey)
                 .compact();

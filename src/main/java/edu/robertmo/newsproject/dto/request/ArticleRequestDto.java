@@ -1,5 +1,6 @@
 package edu.robertmo.newsproject.dto.request;
 
+import edu.robertmo.newsproject.dto.response.UserResponseDto;
 import edu.robertmo.newsproject.validators.UniqueTitle;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -20,7 +21,7 @@ public class ArticleRequestDto {
     private String category;
     @NotNull
     @UniqueTitle
-    @Size(min = 2, max = 46)
+    @Size(min = 2, max = 128)
     private String title;
     @NotNull
     private String content;
@@ -32,4 +33,5 @@ public class ArticleRequestDto {
     private String secondImg;
     private String secondImgDescription;
     private String secondImgCredit;
+
 }

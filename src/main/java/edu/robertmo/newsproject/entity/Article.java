@@ -26,11 +26,11 @@ public class Article {
     private String title;
 
     @NotNull
+    @Column(columnDefinition="TEXT")
     private String content;
 
     private LocalDate date;
 
-    @NotNull
     private String secondaryTitle;
 
 
