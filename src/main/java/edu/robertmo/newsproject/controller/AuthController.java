@@ -45,9 +45,6 @@ public class AuthController {
         var savedPassword = user.getPassword();
         var givenPassword = dto.getPassword();
 
-
-
-
         if(passwordEncoder.matches(givenPassword, savedPassword)) {
             boolean isAdmin = authService.isAdmin(dto.getUsername());
             String profilePic = authService.getProfilePic(dto.getUsername());
@@ -68,6 +65,11 @@ public class AuthController {
         return ResponseEntity.ok(authService.updateProfilePic(dto, authentication));
     }
 
-
+    @DeleteMapping("/profile/delete")
+    public ResponseEntity<UserResponseDto> deleteUser(
+        Authentication authentication
+    ) {
+        return ResponseEntity.ok(authService.deleteUser(authentication));
+    }
 
 }

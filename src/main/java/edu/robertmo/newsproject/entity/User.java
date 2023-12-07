@@ -48,4 +48,12 @@ public class User {
             )
     )
     private Set<Role> roles;
+
+    /** warning:  deletion of a user will lead to deletion of associated articles!**/
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Article> articles;
 }

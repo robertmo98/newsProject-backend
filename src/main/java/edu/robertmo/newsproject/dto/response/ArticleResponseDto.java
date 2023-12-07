@@ -24,4 +24,5 @@ public class ArticleResponseDto {
     private String secondImg;
     private String secondImgDescription;
     private String secondImgCredit;
+    private UserResponseDto user;
 }

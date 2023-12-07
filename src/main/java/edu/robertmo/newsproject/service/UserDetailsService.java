@@ -7,4 +7,5 @@ import org.springframework.security.core.Authentication;
 public interface UserDetailsService {
     UserResponseDto updateProfilePic(UserProfilePicRequestDto dto, Authentication authentication);
 
+    UserResponseDto deleteUser(Authentication authentication);
 }

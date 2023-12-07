@@ -15,14 +15,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ArticleRequestDto {
+public class ArticleUpdateRequestDto {
     @NotNull
     @Size(min = 2, max = 16)
     private String category;
     @NotNull
-    @UniqueTitle
-    @Size(min = 2, max = 128)
-    private String title;
+
     @NotNull
     private String content;
     private Date date;

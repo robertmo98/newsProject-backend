@@ -46,14 +46,16 @@ public class Article {
 
     private String secondImgCredit;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
-
     @OneToMany(
             mappedBy = "article",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private Set<Comment> comments = new HashSet<>();
+
+    @ManyToOne (
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

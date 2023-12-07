@@ -1,5 +1,6 @@
 package edu.robertmo.newsproject.controller;
 
+import edu.robertmo.newsproject.dto.request.ArticleUpdateRequestDto;
 import edu.robertmo.newsproject.dto.response.ArticlePageResponseDto;
 import edu.robertmo.newsproject.dto.request.ArticleRequestDto;
 import edu.robertmo.newsproject.dto.response.ArticleResponseDto;
@@ -26,7 +27,7 @@ public class ArticleController {
     public ResponseEntity<ArticleResponseDto> createArticle(
             @RequestBody @Valid ArticleRequestDto dto, UriComponentsBuilder uriBuilder, Authentication authentication) {
 
-        var saved = articleService.createArticle(dto);
+        var saved = articleService.createArticle(dto, authentication);
         var uri = uriBuilder.path("/api/v1/articles/{id}").buildAndExpand(saved.getId()).toUri();
 
         return ResponseEntity.created(uri).body(saved);
@@ -47,12 +48,11 @@ public class ArticleController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> updateArticleById(
             @NotNull @Valid @PathVariable long id,
-            @Valid @RequestBody ArticleRequestDto dto,
-            Authentication authentication) {
+            @Valid @RequestBody ArticleUpdateRequestDto dto) {
         return ResponseEntity.ok(articleService.updateArticleById(dto, id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ArticleResponseDto> deleteArticleById(
             @NotNull @Valid @PathVariable long id) {

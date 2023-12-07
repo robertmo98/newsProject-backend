@@ -57,7 +57,8 @@ public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.
                 null,
                 passwordEncoder.encode(dto.getPassword()),
                 List.of(),
-                Set.of(userRole)
+                Set.of(userRole),
+                List.of()
                 );
 
         var savedUser = userRepository.save(user);
@@ -112,6 +113,16 @@ public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.
         var userAfterUpdate = getUser(username);
 
         return modelMapper.map(userAfterUpdate, UserResponseDto.class);
+    }
+
+    @Transactional
+    public UserResponseDto deleteUser(Authentication authentication) {
+        var username = authentication.getName();
+        User user = getUser(username);
+
+        userRepository.delete(user);
+
+        return modelMapper.map(user, UserResponseDto.class);
     }
 
     private User getUser(String username) {

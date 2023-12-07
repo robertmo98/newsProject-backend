@@ -1,5 +1,6 @@
 package edu.robertmo.newsproject.service;
 
+import edu.robertmo.newsproject.dto.request.ArticleUpdateRequestDto;
 import edu.robertmo.newsproject.dto.response.ArticlePageResponseDto;
 import edu.robertmo.newsproject.dto.request.ArticleRequestDto;
 import edu.robertmo.newsproject.dto.response.ArticleResponseDto;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,10 +28,11 @@ public class ArticleServiceImpl implements ArticleService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     @Override
-    public ArticleResponseDto createArticle(ArticleRequestDto dto) {
+    public ArticleResponseDto createArticle(ArticleRequestDto dto, Authentication authentication) {
         Article entity = modelMapper.map(dto, Article.class);
+        var user = userRepository.findByUsernameIgnoreCase(authentication.getName()).orElseThrow();
         entity.setDate(LocalDate.now());
-
+        entity.setUser(user);
         var saved = articleRepository.save(entity);
 
         return modelMapper.map(saved, ArticleResponseDto.class);
@@ -50,12 +53,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticleResponseDto updateArticleById(ArticleRequestDto dto, long id) {
+    public ArticleResponseDto updateArticleById(ArticleUpdateRequestDto dto, long id) {
         Article articleFromDb = getArticleEntity(id);
 
         //update => copy new props from request dto
         articleFromDb.setCategory(dto.getCategory());
-        articleFromDb.setTitle(dto.getTitle());
         articleFromDb.setContent(dto.getContent());
         //save the original date.
         articleFromDb.setSecondaryTitle(dto.getSecondaryTitle());
@@ -73,6 +75,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticleResponseDto deleteArticleById(long id) {
         Article article = getArticleEntity(id);
         articleRepository.deleteById(id);
