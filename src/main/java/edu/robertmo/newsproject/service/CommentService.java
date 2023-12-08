@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CommentService {
     CommentResponseDto createComment(long articleId, CommentRequestDto dto, Authentication authentication);
-    List<CommentResponseDto> findCommentsByArticleId(long articleId);
+    List<CommentResponseDto> findCommentsByArticleId(long articleId, Authentication authentication);
     CommentResponseDto updateComment(long commentId, CommentRequestDto dto, Authentication authentication);
 
     CommentResponseDto deleteCommentById(long commentId, Authentication authentication);

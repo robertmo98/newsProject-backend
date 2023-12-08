@@ -10,13 +10,14 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
 import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JWTProvider {
-    //read values from application.properties:
+    /**
+     * read values from application.properties:
+     */
     @Value("${edu.robertmo.newsproject.secret}")
     private String secret;
 
@@ -69,6 +70,5 @@ public class JWTProvider {
                 .parseClaimsJws(jwt)
                 .getBody().getSubject();
     }
-
 
 }

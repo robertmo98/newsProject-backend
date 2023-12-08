@@ -14,7 +14,4 @@ public class NewsProjectApplication {
     public static void main(String[] args) {
         SpringApplication.run(NewsProjectApplication.class, args);
     }
-
-
-
 }

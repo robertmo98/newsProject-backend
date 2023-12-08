@@ -1,4 +1,4 @@
-package edu.robertmo;
+package edu.robertmo.newsproject.initialization;
 
 import edu.robertmo.newsproject.dto.request.ArticleRequestDto;
 import edu.robertmo.newsproject.entity.Article;
@@ -12,10 +12,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.Set;
 
+/**
+ * This class is for the data initialization:
+ * population the server with the roles of regular user and admin
+ * create admin user
+ * populate with 35 articles
+ */
 @Component
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
@@ -25,11 +30,12 @@ public class DataInitializer implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
+
     @Override
     public void run(String... args) throws Exception {
-//          initializeRoles();
-//          initializeUsers();
-//        initializeArticles();
+          initializeRoles();
+          initializeUsers();
+        initializeArticles();
     }
 
 
@@ -49,6 +55,7 @@ public class DataInitializer implements CommandLineRunner {
                     .username("admin")
                     .email("admin@admin.com")
                     .password(passwordEncoder.encode("password"))
+                    .profilePic("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
                     .roles(Set.of(roleRepository.findByName("ROLE_ADMIN")))
                     .build();
 
@@ -58,7 +65,7 @@ public class DataInitializer implements CommandLineRunner {
 
 
     private void initializeArticles() {
-        if (articleRepository.count() != 0) {
+        if (articleRepository.count() == 0) {
             User user = userRepository.findByUsername("admin");
 
             ArticleRequestDto dto1 = ArticleRequestDto.builder()

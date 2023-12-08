@@ -33,7 +33,7 @@ public class Article {
 
     private String secondaryTitle;
 
-
+    /** url for image **/
     private String mainImg;
 
     private String mainImgDescription;

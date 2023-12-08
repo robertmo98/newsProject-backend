@@ -4,6 +4,7 @@ import edu.robertmo.newsproject.dto.request.SignUpRequestDto;
 import edu.robertmo.newsproject.dto.request.UserProfilePicRequestDto;
 import edu.robertmo.newsproject.dto.response.UserResponseDto;
 import edu.robertmo.newsproject.entity.Role;
+import edu.robertmo.newsproject.error.BadRequestException;
 import edu.robertmo.newsproject.repository.RoleRepository;
 import edu.robertmo.newsproject.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -18,8 +19,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -36,20 +35,26 @@ public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.
 
     @Transactional
     public UserResponseDto signUp(SignUpRequestDto dto) {
-        //1) get the user role from the RoleRepository:
+        /**
+         * 1) get the user role from the RoleRepository:
+         */
         val userRole = roleRepository.findByNameIgnoreCase("ROLE_USER")
-                .orElseThrow( () -> new RuntimeException("please Contact admin"));//todo: create news exception and use it here!
-        //2) if email/username exists -> Go Sign in (exception):
+                .orElseThrow( () -> new RuntimeException("please Contact admin"));
+        /**
+         * 2) if email/username exists -> Go Sign in (exception):
+         */
         val byUser = userRepository.findByUsernameIgnoreCase(dto.getUsername().trim());
         val byEmail = userRepository.findByEmailIgnoreCase(dto.getEmail().trim());
 
         if(byEmail.isPresent()) {
-            throw new RuntimeException("email already exists");//todo: create class BadRequestException and use it here!
+            throw new BadRequestException("Email","already exists");
         } else if (byUser.isPresent()) {
             throw new RuntimeException("username already exists");//todo: create class BadRequestException and use it here!
         }
 
-        //3) val user = new User(...encoded-password)
+        /**
+         * 3) val user = new User(...encoded-password)
+         */
         val user = new User(
             null,
                 dto.getUsername(),
@@ -67,14 +72,20 @@ public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //fetch our user entity from our database
+        /**
+         * fetch our user entity from the database
+         */
         User user = getUser(username);
 
-        //map our roles to Springs SimpleGrantedAuthority:
+        /**
+         * map our roles to Springs SimpleGrantedAuthority:
+         */
         var roles = user.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.getName())).toList();
 
-        //return new org.springframework.security.core.userdetails.User
-        //spring User implements UserDetails
+        /**
+         * return new org.springframework.security.core.userdetails.User
+         * spring User implements UserDetails
+         */
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), roles);
     }
 
@@ -131,6 +142,5 @@ public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.
                 .orElseThrow(() -> new UsernameNotFoundException(username));
         return user;
     }
-
 
 }

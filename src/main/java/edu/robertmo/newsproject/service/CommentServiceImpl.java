@@ -43,7 +43,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentResponseDto> findCommentsByArticleId(long articleId) {
+    public List<CommentResponseDto> findCommentsByArticleId(long articleId, Authentication authentication) {
         if(!articleRepository.existsById(articleId)) {
             throw new ResourceNotFoundException("article", articleId);
         }
@@ -97,6 +97,5 @@ public class CommentServiceImpl implements CommentService {
         if(!isAdmin && !userOwnsComment) {
             throw new BadRequestException("user", "Comment must belong the editing user");
         }
-
     }
 }

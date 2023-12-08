@@ -15,6 +15,7 @@ public class ResourceNotFoundException extends NewsException{
     private String resourceId;
     private String message;
 
+
     public ResourceNotFoundException(String resourceName, String resourceId, String message) {
         super("%s with id = %s %s".formatted(resourceName, resourceId, message));
         this.resourceName = resourceName;

@@ -27,7 +27,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         var token = getJWTFromRequest(request);
 
-        //if we throw a JWT exception, the chain stops:
+        /**
+         *if we throw a JWT exception, the chain stops:
+         */
         if (StringUtils.hasText(token) && jwtProvider.validateToken(token)){
             var username = jwtProvider.getUsernameFromToken(token);
             var user = userDetailsService.loadUserByUsername(username);
@@ -36,12 +38,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     user.getUsername(), null, user.getAuthorities()
             );
 
-            //makes the user logged in:
+            /** makes the user logged in **/
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
-        //if no exceptions thrown -> the chain continues.
-        //proceed with the filter chain:
+        /**if no exceptions thrown -> the chain continues. proceed with the filter chain: */
         filterChain.doFilter(request, response);
     }
 

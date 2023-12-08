@@ -18,11 +18,11 @@ GET http://localhost:8080/api/v1/articles
 Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTEwMzk5Mywicm9sZSI6InVzZXIiLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvMjIyMDMzNi9wZXhlbHMtcGhvdG8tMjIyMDMzNi5qcGVnP2F1dG89Y29tcHJlc3MmY3M9dGlueXNyZ2Imdz0xMjYwJmg9NzUwJmRwcj0yIiwiZXhwIjoxNzAzNjk1OTkzfQ.yC6R3swaAr--q4Q16aW5dAFgkEA6T3vOBsX8JQiApm_RhsWe_Vazs3HNOz9xCpZ2O8HF6NsbGueEmfWkvrTEVA
 
 ### Get an article by id:
-GET http://localhost:8080/api/v1/articles/202
+GET http://localhost:8080/api/v1/articles/404
 Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTEwMzk5Mywicm9sZSI6InVzZXIiLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvMjIyMDMzNi9wZXhlbHMtcGhvdG8tMjIyMDMzNi5qcGVnP2F1dG89Y29tcHJlc3MmY3M9dGlueXNyZ2Imdz0xMjYwJmg9NzUwJmRwcj0yIiwiZXhwIjoxNzAzNjk1OTkzfQ.yC6R3swaAr--q4Q16aW5dAFgkEA6T3vOBsX8JQiApm_RhsWe_Vazs3HNOz9xCpZ2O8HF6NsbGueEmfWkvrTEVA
 
 ###Update an article by id:
-PUT http://localhost:8080/api/v1/articles/153
+PUT http://localhost:8080/api/v1/articles/900
 Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb2UiLCJpYXQiOjE3MDE2MDAyMjgsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcwMjIwNTAyOH0.49otZ5Xg6fLFdmz2X3I05JK5eI5JAFDa0ETcu8CTk0JD8nzYSeWNG2Tec66nDW-Kf7vgr1lmZmCiKqJV6nTefw
 Content-Type: application/json
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 
 ###Get articles by page 1:
-GET http://localhost:8080/api/v1/articles/page?pageSize=2&pageNo=0
+GET http://localhost:8080/api/v1/articles/page?pageSize=2&pageNo=1
 Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMTEwMzk5Mywicm9sZSI6InVzZXIiLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvMjIyMDMzNi9wZXhlbHMtcGhvdG8tMjIyMDMzNi5qcGVnP2F1dG89Y29tcHJlc3MmY3M9dGlueXNyZ2Imdz0xMjYwJmg9NzUwJmRwcj0yIiwiZXhwIjoxNzAzNjk1OTkzfQ.yC6R3swaAr--q4Q16aW5dAFgkEA6T3vOBsX8JQiApm_RhsWe_Vazs3HNOz9xCpZ2O8HF6NsbGueEmfWkvrTEVA
 
 

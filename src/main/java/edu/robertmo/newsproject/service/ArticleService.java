@@ -10,11 +10,11 @@ import java.util.List;
 
 public interface ArticleService {
     ArticleResponseDto createArticle(ArticleRequestDto dto, Authentication authentication);
-    List<ArticleResponseDto> getAllArticles();
+    List<ArticleResponseDto> getAllArticles(Authentication authentication);
     ArticleResponseDto getArticleById(long id);
     ArticleResponseDto updateArticleById(ArticleUpdateRequestDto dto, long id);
     ArticleResponseDto deleteArticleById(long id);
 
 
-    ArticlePageResponseDto getAllArticles(int pageNo, int pageSize, String sortDir, String sortBy);
+    ArticlePageResponseDto getAllArticles(int pageNo, int pageSize, String sortDir, String sortBy, Authentication authentication);
 }

@@ -6,6 +6,7 @@ import edu.robertmo.newsproject.dto.request.ArticleRequestDto;
 import edu.robertmo.newsproject.dto.response.ArticleResponseDto;
 import edu.robertmo.newsproject.dto.response.ArticleWithCommentsDto;
 import edu.robertmo.newsproject.entity.Article;
+import edu.robertmo.newsproject.error.ResourceNotFoundException;
 import edu.robertmo.newsproject.repository.ArticleRepository;
 import edu.robertmo.newsproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleResponseDto> getAllArticles() {
+    public List<ArticleResponseDto> getAllArticles(Authentication authentication) {
         return articleRepository
                 .findAll()
                 .stream()
@@ -83,7 +84,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticlePageResponseDto getAllArticles(int pageNo, int pageSize, String sortDir, String sortBy) {
+    public ArticlePageResponseDto getAllArticles(
+            int pageNo, int pageSize, String sortDir, String sortBy, Authentication authentication) {
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.Direction.fromString(sortDir), sortBy);
 
         Page<Article> page = articleRepository.findAll(pageable);
@@ -99,10 +101,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .build();
     }
 
-
-
     private Article getArticleEntity(long id) {
-        return articleRepository.findById(id).orElseThrow();
-        // TODO: 30/09/2023 configure resourceNotFoundException and throw it
+        return articleRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Article", id));
     }
 }
