@@ -33,8 +33,8 @@ git clone https://github.com/yourusername/newsProject.git
 
 - The application will start, and you should see output indicating that the server is running.
 - The application should now be accessible at http://localhost:8080.
-# Further instruction regarding the endpoints can be found on http://localhost:8080/swagger 
-# Once running the application, the edu.robertmo.newsproject.initialization.Datainitializer.java (the run method) class will initialize the server (in the database) with USER_ROLES, admin user, and articles to demonstrate the server's and front end's features.
-# The admin username email password are: admin admin@admin.com password .
+## Further instruction regarding the endpoints can be found on http://localhost:8080/swagger 
+## Once running the application, the edu.robertmo.newsproject.initialization.Datainitializer.java (the run method) class will initialize the server (in the database) with USER_ROLES, admin user, and articles to demonstrate the server's and front end's features.
+## The admin username email password are: admin admin@admin.com password .
 - To connect to the designated React.js project, visit [News Project Frontend](https://github.com/robertmo98/newsProjectFront) and follow the instructions.
 
