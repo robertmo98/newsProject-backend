@@ -59,7 +59,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.
             null,
                 dto.getUsername(),
                 dto.getEmail(),
-                null,
+                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
                 passwordEncoder.encode(dto.getPassword()),
                 List.of(),
                 Set.of(userRole),
@@ -93,9 +93,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, edu.robertmo.
     public boolean isAdmin(String username) {
         Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
 
-        Optional <Role> roleAdmin = roleRepository.findByNameIgnoreCase("ROLE_ADMIN");
-
-        if (user != null) {
+        if (user.isPresent()) {
             Set<Role> roles = user.get().getRoles();
 
             for(Role role : roles) {

@@ -54,7 +54,7 @@ public class DataInitializer implements CommandLineRunner {
             User adminUser = User.builder()
                     .username("admin")
                     .email("admin@admin.com")
-                    .password(passwordEncoder.encode("password"))
+                    .password(passwordEncoder.encode("Password1!"))
                     .profilePic("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
                     .roles(Set.of(roleRepository.findByName("ROLE_ADMIN")))
                     .build();

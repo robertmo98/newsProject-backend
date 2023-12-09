@@ -13,8 +13,8 @@ POST http://localhost:8080/api/v1/auth/signin
 Content-Type: application/json
 
 {
-  "username": "Joe",
-  "password": "Password!1"
+  "username": "admin2",
+  "password": "Password1!"
 }
 
 ###Change profile pic:
